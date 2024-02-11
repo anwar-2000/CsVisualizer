@@ -7,32 +7,35 @@ const Table = () => {
   const [selectedText,setSelectedText] = useState({
     indexRow : null,
     indexItem : null,
+    titleIndex : null,
     content : "",
+    col : null,
+    row : null,
   })
   const ItemContent = useRef(null)
   const handleDoubleClickTitle = (index) => {
     //console.log(index, file.headers[index]);
-    setSelectedText({indexRow : null , indexItem : index , content : file.headers[index]})
+    setSelectedText({indexRow : null , titleIndex : index , indexItem : null, content : file.headers[index]})
   };
   const handleDoubleClickRow = (index) => {
    // console.log(index, file.rows[index]);
   };
   const handleDoubleClickItem = (indexRow, indexItem) => {
-   // console.log(indexRow, indexItem, file.rows[indexRow]);
+   //console.log(indexRow, indexItem, file.rows[indexRow]);
     //when indexItem is null
-    if(!indexItem){
+    if(indexItem === null){
       setSelectedText({indexRow : indexRow , indexItem : null , content : file.rows[indexRow]})
       return;
     }
     //console.log(indexRow, indexItem, file.rows[indexRow][indexItem]);
     setSelectedText({indexRow : indexRow , indexItem : indexItem , content : file.rows[indexRow][indexItem] })
   };
-  const handleTitleItemTextChange = (state) => {
+  const handleTitleItemTextChange = () => {
     const newValue = ItemContent.current.value;
     if(selectedText.content !== newValue){
-     file.headers[selectedText.indexItem] = newValue
+     file.headers[selectedText.titleIndex] = newValue
     }
-    setSelectedText({indexItem : null , indexRow : null , content : ""})
+    setSelectedText({indexItem : null , indexRow : null , titleIndex : null , content : ""})
   }
   const handleRowItemTextChange = (state) => {
     const newValue = ItemContent.current.value;
@@ -50,10 +53,10 @@ const Table = () => {
         <tr>
           {file.headers.length > 1
             ? file.headers.map((value, i) => (
-                <th key={i} onDoubleClick={() => handleDoubleClickTitle(i)}>
+                <th key={i} onDoubleClick={() => handleDoubleClickTitle(i)} onClick={()=>setSelectedText((prev)=>({...prev,col : i}))}>
                   {
-                ( selectedText.indexItem === i) ?
-                      <input ref={ItemContent} onBlur={handleTitleItemTextChange} type="text" name="content" defaultValue={selectedText.content} /> 
+                ( selectedText.titleIndex === i) ?
+                      <input ref={ItemContent} onBlur={handleTitleItemTextChange} style={{outline : "none" , border : "none" , padding : "0.6rem"}} type="text" name="content" defaultValue={selectedText.content} /> 
                  :
                   value
                 }
@@ -61,8 +64,8 @@ const Table = () => {
               ))
             : <th onDoubleClick={() => handleDoubleClickTitle(0)}>
                     {
-                (selectedText.indexItem === 0) ?
-                      <input ref={ItemContent} onBlur={handleTitleItemTextChange} type="text" name="content" defaultValue={selectedText.content} /> 
+                (selectedText.titleIndex === 0) ?
+                      <input ref={ItemContent} onBlur={handleTitleItemTextChange} style={{outline : "none" , border : "none" , padding : "0.6rem"}} type="text" name="content" defaultValue={selectedText.content} /> 
                  :
                   "Change header"
                 }
@@ -73,13 +76,13 @@ const Table = () => {
       </thead>
       <tbody>
       {file.rows.map((item, j) => (
-        <tr key={j} onDoubleClick={() => handleDoubleClickRow(j)}>
+        <tr key={j} onDoubleClick={() => handleDoubleClickRow(j)} onClick={()=>setSelectedText((prev)=>({...prev,row : j}))}>
           {item.length > 1 ? (
             item.map((value, i) => (
               <td key={i} onDoubleClick={() => handleDoubleClickItem(j, i)}>
                 {
                 (selectedText.indexRow === j && selectedText.indexItem === i) ?
-                      <input ref={ItemContent} onBlur={()=>handleRowItemTextChange("duplex")} type="text" name="content" defaultValue={selectedText.content} /> 
+                      <input ref={ItemContent} onBlur={()=>handleRowItemTextChange("duplex")} style={{outline : "none" , border : "none" , padding : "0.6rem"}} type="text" name="content" defaultValue={selectedText.content} /> 
                  :
                   value
                 }
@@ -89,7 +92,7 @@ const Table = () => {
             <td key={j} onDoubleClick={() => handleDoubleClickItem(j,null)}>
               {
                 (selectedText.indexRow === j) ?
-                      <input ref={ItemContent} onBlur={()=>handleRowItemTextChange("only one index")} type="text" name="content" defaultValue={selectedText.content} /> 
+                      <input ref={ItemContent} onBlur={()=>handleRowItemTextChange("only one index")} style={{outline : "none" , border : "none" , padding : "0.6rem"}} type="text" name="content" defaultValue={selectedText.content} /> 
                  :
                   item
                 }

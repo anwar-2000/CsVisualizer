@@ -1,0 +1,33 @@
+.VisualizeHeader{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.5rem;
+}
+.VisualizeHeader button {
+    background : rgb(20, 20, 20);
+    color: white;
+    display: flex;
+    align-items: center;
+    border : none;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.VisualizeHeader button:hover {
+    background-color: rgb(74, 190, 119);
+    color : white;
+}
+.title{
+    background-color: rgb(255, 255, 255);
+    border-radius: 4px;
+    width: fit-content;
+    margin-left: 1rem;
+    padding : 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
