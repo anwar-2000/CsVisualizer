@@ -1,0 +1,19 @@
+.visualize_table {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: scroll;
+   }
+
+.title{
+    background-color: rgb(209, 207, 207);
+    border-radius: 4px;
+    width: fit-content;
+    margin-left: 1rem;
+    padding : 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+}

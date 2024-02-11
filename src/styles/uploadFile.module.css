@@ -1,0 +1,22 @@
+.container{
+    position: relative;
+    background: #739072;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    padding: 1rem 4rem;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.container input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  z-index: -1;
+}

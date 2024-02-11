@@ -1,0 +1,40 @@
+.table {
+    margin-left: 1rem;
+    background-color: white;
+    border: solid 1px black;
+    width: 60%;
+    height: 70%;
+    overflow: scroll;
+    border-radius: 3px;
+  }
+  
+  .table th {
+    border: solid 1px black;
+    padding: 3px;
+    width: auto;
+    cursor: pointer;
+    white-space: nowrap;
+    background-color: #f2f2f2; 
+    font-weight: bold; 
+    text-align: left; 
+  }
+  
+  /* Style for table rows */
+  .table td {
+    cursor: pointer;
+    border: solid 1px black;
+    padding: 1px;
+    text-align: left; 
+  }
+  
+  /* Style for alternate rows (optional) */
+  .table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .table th:hover {
+      background-color: rgb(178, 228, 228);
+  }
+    .table td:hover {
+      background-color: rgb(163, 179, 179);
+  }
