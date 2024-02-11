@@ -5,7 +5,7 @@
     width: 60%;
     height: 70%;
     overflow: scroll;
-    border-radius: 3px;
+    border-radius: 3px; 
   }
   
   .table th {

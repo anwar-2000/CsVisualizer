@@ -5,7 +5,12 @@
     justify-content: flex-start;
     overflow: scroll;
    }
-
+.VisualizeHeader{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 3rem;
+}
 .title{
     background-color: rgb(209, 207, 207);
     border-radius: 4px;
@@ -15,5 +20,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 4rem;
+    gap: 1rem;
 }
+
