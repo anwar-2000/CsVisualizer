@@ -7,7 +7,8 @@ function FileContextProvider({children}) {
     name : "",
     content :  "",
     headers : [],
-    rows : []
+    rows : [],
+    showEditModal : false
   });
   const contextValue = {
     file,

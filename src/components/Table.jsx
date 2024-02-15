@@ -2,8 +2,12 @@ import { useRef } from "react";
 import { useContext, useState } from "react";
 import FileContext from "../store/FileContext.js";
 import classes from "../styles/table.module.css";
+import Modal from "./Modal.jsx";
+
 const Table = () => {
+
   const { file } = useContext(FileContext);
+
   const [selectedText,setSelectedText] = useState({
     indexRow : null,
     indexItem : null,
@@ -12,16 +16,29 @@ const Table = () => {
     col : null,
     row : null,
   })
+
   const ItemContent = useRef(null)
+  const timerRef = useRef(null);
+  const colRowsEditingModal = useRef()
   const handleDoubleClickTitle = (index) => {
     //console.log(index, file.headers[index]);
     setSelectedText({indexRow : null , titleIndex : index , indexItem : null, content : file.headers[index]})
   };
-  const handleDoubleClickRow = (index) => {
-   // console.log(index, file.rows[index]);
+  const handleHoveringRow = (index) => {
+    // 3s to open modal
+    timerRef.current =  setTimeout(() => {
+      setSelectedText((prev) => ({ ...prev, row: index }));
+      colRowsEditingModal.current.openModal();
+    }, 3000);
   };
-  const handleDoubleClickItem = (indexRow, indexItem) => {
+  const handleMouseLeave = () => {
+    clearTimeout(timerRef.current);
+    timerRef.current = null; // Clear reference for cleanup
+  };
+  const handleDoubleClickItem = (e,indexRow, indexItem) => {
+     e.stopPropagation()
    //console.log(indexRow, indexItem, file.rows[indexRow]);
+
     //when indexItem is null
     if(indexItem === null){
       setSelectedText({indexRow : indexRow , indexItem : null , content : file.rows[indexRow]})
@@ -47,7 +64,8 @@ const Table = () => {
     }
     setSelectedText({indexItem : null , indexRow : null , content : ""})
   }
-  return (
+  return <>
+    <Modal ref={colRowsEditingModal} rowIndex={selectedText.row} />
     <table className={classes.table}>
       <thead>
         <tr>
@@ -76,10 +94,10 @@ const Table = () => {
       </thead>
       <tbody>
       {file.rows.map((item, j) => (
-        <tr key={j} onDoubleClick={() => handleDoubleClickRow(j)} onClick={()=>setSelectedText((prev)=>({...prev,row : j}))}>
+        <tr key={j} onMouseEnter={() => handleHoveringRow(j)} onMouseLeave={handleMouseLeave}>
           {item.length > 1 ? (
             item.map((value, i) => (
-              <td key={i} onDoubleClick={() => handleDoubleClickItem(j, i)}>
+              <td key={i} onDoubleClick={(e) => handleDoubleClickItem(e,j, i)}>
                 {
                 (selectedText.indexRow === j && selectedText.indexItem === i) ?
                       <input ref={ItemContent} onBlur={()=>handleRowItemTextChange("duplex")} style={{outline : "none" , border : "none" , padding : "0.6rem"}} type="text" name="content" defaultValue={selectedText.content} /> 
@@ -102,7 +120,7 @@ const Table = () => {
       ))}
       </tbody>
     </table>
-  );
+  </>
 };
 
 export default Table;

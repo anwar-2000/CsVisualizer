@@ -5,7 +5,8 @@ const FileContext = createContext({
         name : "",
         content : [],
         headers : [],
-        rows : []
+        rows : [],
+        showEditModal : false
     },
     setFile : () =>{}
 })

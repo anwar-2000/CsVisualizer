@@ -1,0 +1,27 @@
+.container{
+    position: absolute;
+    top: 3rem;
+    z-index: 20;
+    max-width : 30%;
+    height: auto;
+    background-color: white;
+    color: black;
+}
+.container ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.8rem;
+    font-weight: bold;
+}
+.container ul li {
+    background-color: rgb(190, 190, 185);
+    padding: 0.9rem 0.5rem;
+    list-style-type: none;
+    transition: all 0.4s ease;
+}
+.container ul li:hover {
+    background-color: rgb(158, 158, 144);
+}
