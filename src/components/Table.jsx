@@ -2,7 +2,6 @@ import { useRef } from "react";
 import { useContext, useState } from "react";
 import FileContext from "../store/FileContext.js";
 import classes from "../styles/table.module.css";
-import Modal from "./Modal.jsx";
 
 const Table = () => {
 
@@ -18,22 +17,9 @@ const Table = () => {
   })
 
   const ItemContent = useRef(null)
-  const timerRef = useRef(null);
-  const colRowsEditingModal = useRef()
   const handleDoubleClickTitle = (index) => {
     //console.log(index, file.headers[index]);
     setSelectedText({indexRow : null , titleIndex : index , indexItem : null, content : file.headers[index]})
-  };
-  const handleHoveringRow = (index) => {
-    // 3s to open modal
-    timerRef.current =  setTimeout(() => {
-      setSelectedText((prev) => ({ ...prev, row: index }));
-      colRowsEditingModal.current.openModal();
-    }, 3000);
-  };
-  const handleMouseLeave = () => {
-    clearTimeout(timerRef.current);
-    timerRef.current = null; // Clear reference for cleanup
   };
   const handleDoubleClickItem = (e,indexRow, indexItem) => {
      e.stopPropagation()
@@ -65,7 +51,7 @@ const Table = () => {
     setSelectedText({indexItem : null , indexRow : null , content : ""})
   }
   return <>
-    <Modal ref={colRowsEditingModal} rowIndex={selectedText.row} />
+    {/* <Modal ref={colRowsEditingModal} rowIndex={selectedText.row} /> */}
     <table className={classes.table}>
       <thead>
         <tr>
@@ -87,14 +73,12 @@ const Table = () => {
                  :
                   "Change header"
                 }
-                  </th>}
-              
-              
+                  </th>}              
         </tr>
       </thead>
       <tbody>
       {file.rows.map((item, j) => (
-        <tr key={j} onMouseEnter={() => handleHoveringRow(j)} onMouseLeave={handleMouseLeave}>
+        <tr key={j} >
           {item.length > 1 ? (
             item.map((value, i) => (
               <td key={i} onDoubleClick={(e) => handleDoubleClickItem(e,j, i)}>

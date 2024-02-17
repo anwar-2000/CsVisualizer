@@ -1,0 +1,35 @@
+.modalContent{
+    width: 70vw;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+.modalContent select {
+    width: 20rem;
+    padding: 0.9rem 0;
+    font-weight: bolder;
+}
+.modalContent select option {
+    background-color: rgb(161, 164, 167);
+}
+
+.modalContent button {
+    background-color: black;
+    color: white;
+    width: 8rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    padding: 1rem;
+}
+.close{
+    padding: 0.6rem;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    background : none;
+    cursor: pointer;
+}

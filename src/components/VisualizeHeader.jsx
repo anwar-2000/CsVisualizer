@@ -1,16 +1,19 @@
-import { useContext, useRef  } from "react";
+import { useContext, useRef , useState  } from "react";
 import FileContext from "../store/FileContext.js";
 import classes from "../styles/visualizeHeader.module.css";
 import { BsDownload } from "react-icons/bs";
 import { TfiSave } from "react-icons/tfi";
 import Papa from "papaparse";
-import { IoIosAdd } from "react-icons/io";
-import { MdOutlineDeleteOutline } from "react-icons/md";
-import RowsColsEvents from "./RowsColsEvents.jsx";
+import { BsLayoutThreeColumns } from "react-icons/bs";
+import { BsReverseListColumnsReverse } from "react-icons/bs";
+import Modal from "./Modal.jsx";
+
 
 
 function VisualizeHeader() {
+  const colRowsEditingModal = useRef();
   const downloadLink = useRef();
+  const [editType, setEditType] = useState("col") 
   const { file } = useContext(FileContext);
 
   const handleSaveNewFile = () => {
@@ -29,11 +32,16 @@ function VisualizeHeader() {
     downloadLink.current.download = `${file.name}_edit_.csv`;
     downloadLink.current.click();
   };
+  const handleEditColumns = (type) =>{
+    setEditType(type)
+    colRowsEditingModal.current.openModal()
+  }
   return (
     <>
+      <Modal ref={colRowsEditingModal} type={editType} />
       <div className={classes.VisualizeHeader}>
         <h4 className={classes.title}>
-          {file.name} <BsDownload size={20} style={{ cursor: "pointer" }} />{" "}
+          {file.name} <BsDownload size={20} style={{ cursor: "pointer" }} />
         </h4>
         <TfiSave
           size={20}
@@ -42,6 +50,8 @@ function VisualizeHeader() {
           onClick={handleSaveNewFile}
         />
         <a href="" ref={downloadLink} className={{ display: "hidden" }} />
+        <BsLayoutThreeColumns size={20} style={{ cursor: "pointer" }} onClick={()=>handleEditColumns("col")}/>
+        <BsReverseListColumnsReverse size={20} style={{ cursor: "pointer" }} onClick={()=>handleEditColumns("row")}/>
       </div>
     </>
   );
