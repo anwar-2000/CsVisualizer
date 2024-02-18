@@ -55,6 +55,7 @@ const Table = () => {
     <table className={classes.table}>
       <thead>
         <tr>
+          <th>N°</th>
           {file.headers.length > 1
             ? file.headers.map((value, i) => (
                 <th key={i} onDoubleClick={() => handleDoubleClickTitle(i)} onClick={()=>setSelectedText((prev)=>({...prev,col : i}))}>
@@ -79,6 +80,7 @@ const Table = () => {
       <tbody>
       {file.rows.map((item, j) => (
         <tr key={j} >
+          <td>{j + 1}</td>
           {item.length > 1 ? (
             item.map((value, i) => (
               <td key={i} onDoubleClick={(e) => handleDoubleClickItem(e,j, i)}>

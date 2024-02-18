@@ -13,9 +13,9 @@ export function addColumnAt(index,file,position) {
     file.headers.splice(last_index, 0, newElement);
 
     // Iterating over each row in the content array
-    for (let i = 0; i < file.content.length; i++) {
+    for (let i = 0; i < file.rows.length; i++) {
         // Inserting the appropriate value at the corresponding index in each row
-        file.content[i].splice(last_index, 0, 'New Item');
+        file.rows[i].splice(last_index, 0, 'New Item');
     }
 
     //console.log(file)
