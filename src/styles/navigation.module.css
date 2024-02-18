@@ -3,11 +3,14 @@
     align-items: center;
     justify-content: space-between;
     background: none;
-    color : #769267;
+    color : #fafafa;
     padding: 0px 2rem;
 }
 .header nav h1 {
     font-weight: bolder;
     font-size: 1.8rem;
     font-family: sans-serif;
+    font-family: "Rubik Glitch Pop", system-ui;
+    font-weight: 400;
+    font-style: normal;
 }

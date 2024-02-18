@@ -19,9 +19,13 @@ const Modal = forwardRef(({ type }, ref) => {
     position: null,
   });
   const { file, setFile } = useContext(FileContext);
+
+
   useImperativeHandle(ref, () => ({
     openModal: () => dialog.current.showModal(),
   }));
+
+
   //console.log(file.rows)
   const EditTable = () => {
     if (type === "col") {
@@ -34,11 +38,11 @@ const Modal = forwardRef(({ type }, ref) => {
         content: new_file.content,
       }));
     } else {
-      console.log(values);
+      //console.log(values);
       const new_rows = addRow(file, values.position);
       setFile((prev) => ({ ...prev, rows: new_rows }));
-      return;
     }
+    dialog.current.close()
   };
   return (
     <dialog ref={dialog} style={{ position: "relative" }}>
@@ -52,8 +56,7 @@ const Modal = forwardRef(({ type }, ref) => {
               }
             >
               <option value="" disabled>
-                {" "}
-                Choose position{" "}
+                Choose position
               </option>
               <option value="before">Before</option>
               <option value="after">After</option>
@@ -64,7 +67,6 @@ const Modal = forwardRef(({ type }, ref) => {
               }
             >
               <option value="" disabled>
-                {" "}
                 Choose Column
               </option>
               {file.headers.map((header, i) => (
@@ -82,7 +84,7 @@ const Modal = forwardRef(({ type }, ref) => {
             }}
           >
             <option value="" disabled selected>
-              Choose position{" "}
+              Choose position
             </option>
             <option value="start">Start</option>
             <option value="end">End</option>

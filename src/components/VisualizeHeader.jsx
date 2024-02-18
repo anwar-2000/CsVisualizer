@@ -6,8 +6,9 @@ import { TfiSave } from "react-icons/tfi";
 import Papa from "papaparse";
 import { BsLayoutThreeColumns } from "react-icons/bs";
 import { BsReverseListColumnsReverse } from "react-icons/bs";
-import Modal from "./Modal.jsx";
+import { MdDeleteSweep } from "react-icons/md";
 
+import Modal from "./Modal.jsx";
 
 
 function VisualizeHeader() {
@@ -45,13 +46,14 @@ function VisualizeHeader() {
         </h4>
         <TfiSave
           size={20}
-          color="black"
+          color="white"
           style={{ cursor: "pointer" }}
           onClick={handleSaveNewFile}
         />
         <a href="" ref={downloadLink} className={{ display: "hidden" }} />
-        <BsLayoutThreeColumns size={20} style={{ cursor: "pointer" }} onClick={()=>handleEditColumns("col")}/>
-        <BsReverseListColumnsReverse size={20} style={{ cursor: "pointer" }} onClick={()=>handleEditColumns("row")}/>
+        <BsLayoutThreeColumns color="white" size={20} style={{ cursor: "pointer" }} onClick={()=>handleEditColumns("col")}/>
+        <BsReverseListColumnsReverse color="white" size={20} style={{ cursor: "pointer" }} onClick={()=>handleEditColumns("row")}/>
+        <MdDeleteSweep color="white" size={27} style={{ cursor: "pointer" }} />
       </div>
     </>
   );

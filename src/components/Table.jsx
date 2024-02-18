@@ -21,8 +21,7 @@ const Table = () => {
     //console.log(index, file.headers[index]);
     setSelectedText({indexRow : null , titleIndex : index , indexItem : null, content : file.headers[index]})
   };
-  const handleDoubleClickItem = (e,indexRow, indexItem) => {
-     e.stopPropagation()
+  const handleDoubleClickItem = (indexRow, indexItem) => {
    //console.log(indexRow, indexItem, file.rows[indexRow]);
 
     //when indexItem is null
