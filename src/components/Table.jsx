@@ -82,7 +82,7 @@ const Table = () => {
           <td>{j + 1}</td>
           {item.length > 1 ? (
             item.map((value, i) => (
-              <td key={i} onDoubleClick={(e) => handleDoubleClickItem(e,j, i)}>
+              <td key={i} onDoubleClick={(e) => handleDoubleClickItem(j, i)}>
                 {
                 (selectedText.indexRow === j && selectedText.indexItem === i) ?
                       <input ref={ItemContent} onBlur={()=>handleRowItemTextChange("duplex")} style={{outline : "none" , border : "none" , padding : "0.6rem"}} type="text" name="content" defaultValue={selectedText.content} /> 

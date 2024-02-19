@@ -14,6 +14,9 @@ export function addRow(file, position) {
     }
 }
 export function deleteRow(file,index){
-    file.rows.splice(index,1)
+    const parsedIndex = parseInt(index)
+    //console.log(index)
+    //console.log(file.rows[parsedIndex])
+    file.rows.splice(parsedIndex,1)
     return file;
 }

@@ -22,7 +22,6 @@ export function addColumnAt(index,file,position) {
 }
 export function deleteColumn(index,file){
     let Parsed_index = parseInt(index);
-
     file.headers.splice(Parsed_index, 1);
 
     // Iterating over each row in the content array
